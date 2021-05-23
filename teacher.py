@@ -8,9 +8,9 @@ import time
 WORD_COUNT = int(input("How many words do you want to try?"))
 root = tk.Tk()
 # root.geometry('1000x1000')
-keyPressPath = r'E:\Mimisbrunnr\Valhalla\Python Projects\TouchTyping\keyPress.wav'
-errSoundPath = r'E:\Mimisbrunnr\Valhalla\Python Projects\TouchTyping\error-2.wav'
-wordsPath = r'E:\Mimisbrunnr\Valhalla\Python Projects\TouchTyping\words.csv'
+keyPressPath = r'keyPress.wav'
+errSoundPath = r'error-2.wav'
+wordsPath = r'words.csv'
 
 
 @dataclass
