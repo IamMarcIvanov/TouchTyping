@@ -1,8 +1,6 @@
 import tkinter as tk
-from playsound import playsound
 import random
 from dataclasses import dataclass
-import time
 from itertools import product
 
 
@@ -26,9 +24,9 @@ class TextHandler:
         self.timeTaken = 0
 
     def setData(self,
-                wordFilePath='words.csv',
-                letterFilePath='n-grams.csv',
-                weightTechnique='Words'):
+                wordFilePath: str = 'words.csv',
+                letterFilePath: str = 'n-grams.csv',
+                weightTechnique: str = 'Words') -> None:
         with open(wordFilePath, 'r') as f:
             for line_n, line in enumerate(f):
                 if line_n == 0:
@@ -77,13 +75,15 @@ class TextHandler:
                     countSum += count
                 data.weight = weight / countSum
 
-    def text(self):
+    def text(self) -> str:
         chosenWords = random.choices(self.words.keys(),
-                                     weights=[data.weight for data in self.words.values()],
+                                     weights=[
+                                         data.weight for data in self.words.values()],
                                      k=TextHandler.WORD_COUNT)
         textStr = ''
         for i, word in enumerate(chosenWords):
-            delimiter = random.choices(TextHandler.delimeters, weights=TextHandler.delimeterWeights, k=1)[0]
+            delimiter = random.choices(
+                TextHandler.delimeters, weights=TextHandler.delimeterWeights, k=1)[0]
             if i != len(chosenWords) - 1:
                 textStr += word + delimiter
             else:
@@ -91,8 +91,9 @@ class TextHandler:
         return textStr
 
     def writeData(self,
-                  wordFilePath='words.csv',
-                  letterFilePath='n-grams.csv')
+                  wordFilePath: str = 'words.csv',
+                  letterFilePath: str = 'n-grams.csv') -> None:
+        pass
 
 
 class GUI:
