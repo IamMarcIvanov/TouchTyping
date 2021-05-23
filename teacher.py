@@ -44,8 +44,8 @@ for element in words:
     else:
         wt.append(element.frequency * element.incorrect / element.correct)
 
-delim_list = [',', ' ', '.', ';', '?']
-delim_weight = [2, 20, 1, 0.1, 0.1]
+delim_list = [',', ' ', '.', ';', '?', ':']
+delim_weight = [2, 20, 1, 0.1, 0.1, 0.1]
 
 
 def press(event):
