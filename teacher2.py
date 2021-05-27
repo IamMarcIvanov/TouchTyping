@@ -77,8 +77,7 @@ class TextHandler:
 
     def text(self) -> str:
         chosenWords = random.choices(self.words.keys(),
-                                     weights=[
-                                         data.weight for data in self.words.values()],
+                                     weights=[data.weight for data in self.words.values()],
                                      k=TextHandler.WORD_COUNT)
         textStr = ''
         for i, word in enumerate(chosenWords):
@@ -93,7 +92,25 @@ class TextHandler:
     def writeData(self,
                   wordFilePath: str = 'words.csv',
                   letterFilePath: str = 'n-grams.csv') -> None:
-        pass
+        sortedWords = sorted(self.words.keys())
+        with open(wordFilePath, 'r') as f:
+            f.write('word,frequency,correct,incorrect\n')
+            f.write(self.wordsTyped + ',' + self.timeTaken + '\n')
+            for word in sortedWords:
+                data = self.words[word]
+                f = str(data.frequency)
+                c = str(data.correct)
+                i = str(data.incorrect)
+                f.write(word + ',' + f + ',' + c + ',' + i + '\n')
+        sortedLetters = sorted(self.letters.keys())
+        with open(letterFilePath, mode='r') as f:
+            f.write('letter,frequency,correct,incorrect\n')
+            for letter in sortedLetters:
+                data = self.letters[letter]
+                f = str(data.frequency)
+                c = str(data.correct)
+                i = str(data.incorrect)
+                f.write(word + ',' + f + ',' + c + ',' + i + '\n')
 
 
 class GUI:
